@@ -4,7 +4,7 @@ const routerCategory = require('./category.router');
 const router = express.Router();
 
 // colocar las rutas aquí
-router.use('/users', routerUser);
-router.use('/categorys', routerCategory);
+router.use('/users', routerUser)
+router.use('/categories', routerCategory)
 
 module.exports = router;
