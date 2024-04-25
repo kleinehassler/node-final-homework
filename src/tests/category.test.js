@@ -9,8 +9,8 @@ let categoryId
 //hook de inicio de sesion
 beforeAll(async () => {
   const user = {
-    email: "yoneison@gmail.com",
-    password: "yoneison1234"
+    email: "kleine@mail.com",
+    password: "123456"
   }
 
   const res = await request(app)
@@ -23,7 +23,7 @@ beforeAll(async () => {
 test("POST 'BASE_URL', should return statusCode 201, and res.body.name === category.name //🔐", async () => {
 
   const category = {
-    name: "Tecno"
+    name: "Tecnologia"
   }
 
   const res = await request(app)

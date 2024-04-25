@@ -9,8 +9,8 @@ let userId
 beforeAll(async () => {
 
   const user = {
-    email: "yoneison@gmail.com",
-    password: "yoneison1234"
+    email: "kleine@mail.com",
+    password: "123456"
   }
 
   const res = await request(app)
@@ -33,10 +33,10 @@ test("GET -> BASE_URL, should return statusCode 200, and res.body.length === 1",
 
 test("POST -> BASE_URL, should return statusCode 201, and res.body.firstName === user.firstName", async () => {
   const user = {
-    firstName: "Maicol",
-    lastName: "Salazar",
-    email: "maicol@gmail.com",
-    password: "maicol1234",
+    firstName: "Kleine",
+    lastName: "Hassler",
+    email: "kleine@mail.com",
+    password: "123456",
     phone: "1234"
   }
 
@@ -51,12 +51,9 @@ test("POST -> BASE_URL, should return statusCode 201, and res.body.firstName ===
   expect(res.body.firstName).toBe(user.firstName)
 })
 
-
-//testeo de rutas dinamicas
-
 test("PUT -> 'BASE_URL/:id', should return status code 200, res.body.lastName === userUpdate.lastName", async () => {
   const userUpdate = {
-    lastName: "Andrade"
+    lastName: "Morales"
   }
 
   const res = await request(app)
@@ -72,8 +69,8 @@ test("PUT -> 'BASE_URL/:id', should return status code 200, res.body.lastName ==
 test("POST -> 'BASE_URL/login', sould return statusCode 200, res.body.user.email === user.email and res.body.token to be defined ", async () => {
 
   const user = {
-    email: "maicol@gmail.com",
-    password: "maicol1234"
+    email: "kleine@mail.com",
+    password: "123456"
   }
 
   const res = await request(app)
@@ -88,7 +85,7 @@ test("POST -> 'BASE_URL/login', sould return statusCode 200, res.body.user.email
 
 test("POST 'BASE_URL/login', should return statusCode 401", async () => {
   const userInvalid = {
-    email: "maicol@gmail.com",
+    email: "kleine@mail.com",
     password: "Invalid password"
   }
 
