@@ -8,7 +8,7 @@ let userId
 
 beforeAll(async () => {
   const user = {
-    email: "kleine@mail.com",
+    email: "kleine@gmail1.com",
     password: "123456"
   }
 
@@ -16,13 +16,14 @@ beforeAll(async () => {
     .post(`${BASE_URL}/login`)
     .send(user)
 
-  // console.log(res.body.token);
+  console.log(res.body.token);
   TOKEN = res.body.token
 })
 
 test("GET -> BASE_URL, Return Status Code 200, res.body.length === 1", async () => {
   const res = await request(app)
     .get(BASE_URL)
+    .set('Authorization', `Bearer ${TOKEN}`)
     .set('Authorization', `Bearer ${TOKEN}`)
 
   expect(res.statusCode).toBe(200)
@@ -34,7 +35,7 @@ test("POST -> BASE_URL, Return Status Code 201, res.body.firstName === user.firs
   const user = {
     firstName: "Kleine",
     lastName: "Hassler",
-    email: "kleine@mail.com",
+    email: "kleine@gmail.com",
     password: "123456",
     phone: "1234"
   }
@@ -45,10 +46,17 @@ test("POST -> BASE_URL, Return Status Code 201, res.body.firstName === user.firs
 
   userId = res.body.id
 
+
+  console.log(user);
+
   //expect(res.statusCode).toBe(201);
   expect(res.status).toBeGreaterThanOrEqual(201);
   expect(res.body).toBeDefined();
+
+  console.log(res.body);
+
   expect(res.body.firstName).toBe(user.firstName)
+  //expect(res.body.firstName).toBeGreaterThanOrEqual(user.firstName)
 })
 
 test("PUT -> 'BASE_URL/:id', Return Status Code 200, res.body.lastName === userUpdate.lastName", async () => {
