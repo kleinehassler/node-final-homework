@@ -9,7 +9,5 @@ routePurchase.route('/')
     .get(verifyJwt, getAll)
     .post(verifyJwt, create);
 
-routePurchase.route('/:id')
-    .get(verifyJwt, getOne);
 
 module.exports = routePurchase;

@@ -8,22 +8,20 @@ let userId
 
 beforeAll(async () => {
   const user = {
-    email: "kleine@gmail1.com",
+    email: "kleine@mail.com",
     password: "123456"
   }
 
   const res = await request(app)
     .post(`${BASE_URL}/login`)
     .send(user)
-
-  console.log(res.body.token);
+  
   TOKEN = res.body.token
 })
 
 test("GET -> BASE_URL, Return Status Code 200, res.body.length === 1", async () => {
   const res = await request(app)
     .get(BASE_URL)
-    .set('Authorization', `Bearer ${TOKEN}`)
     .set('Authorization', `Bearer ${TOKEN}`)
 
   expect(res.statusCode).toBe(200)
@@ -46,17 +44,9 @@ test("POST -> BASE_URL, Return Status Code 201, res.body.firstName === user.firs
 
   userId = res.body.id
 
-
-  console.log(user);
-
-  //expect(res.statusCode).toBe(201);
-  expect(res.status).toBeGreaterThanOrEqual(201);
+  expect(res.statusCode).toBe(201);
   expect(res.body).toBeDefined();
-
-  console.log(res.body);
-
   expect(res.body.firstName).toBe(user.firstName)
-  //expect(res.body.firstName).toBeGreaterThanOrEqual(user.firstName)
 })
 
 test("PUT -> 'BASE_URL/:id', Return Status Code 200, res.body.lastName === userUpdate.lastName", async () => {
@@ -69,7 +59,7 @@ test("PUT -> 'BASE_URL/:id', Return Status Code 200, res.body.lastName === userU
     .send(userUpdate)
     .set('Authorization', `Bearer ${TOKEN}`)
 
-  expect(res.status).toBeGreaterThanOrEqual(201);
+  expect(res.status).toBe(200);
   expect(res.body).toBeDefined();
   expect(res.body.lastName).toBe(userUpdate.lastName)
 })
@@ -103,7 +93,6 @@ test("POST 'BASE_URL/login', Return Status Code 401", async () => {
 
   expect(res.statusCode).toBe(401)
 })
-
 
 test("DELETE ->'BASE_URL/:id', Return Status Code 204", async () => {
   const res = await request(app)
