@@ -25,6 +25,7 @@ const remove = catchError(async(req, res) => {
     return res.sendStatus(204);
 });
 
+/*
 const update = catchError(async(req, res) => {
     const { id } = req.params;
     const result = await Category.update(
@@ -35,10 +36,10 @@ const update = catchError(async(req, res) => {
     return res.json(result[1][0]);
 });
 
+*/
+
 module.exports = {
     getAll,
     create,
-    getOne,
-    remove,
-    update
+    remove
 }

@@ -99,3 +99,8 @@ DELETE /product_images (privado)🔐
 
 
 En total hay 23 endpoints. Cada uno de estos endpoints deben contar con sus respectivos tests. Excepto los tres endpoints de ProductImg (No obligatorios)
+
+
+
+Render DB
+postgres://node_gen34_final_homework_api_user:eyBibJ55hod67Ob6BS584BGB1AhieMmT@dpg-concs1ocmk4c73a34kq0-a/node_gen34_final_homework_api

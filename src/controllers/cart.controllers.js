@@ -34,7 +34,6 @@ const create = catchError(async(req, res) => {
 
 const getOne = catchError(async(req, res) => {
     const { id } = req.params;
-
     const userId = req.user.id
 
     const result = await Cart.findByPk(id, {
@@ -67,8 +66,8 @@ const remove = catchError(async(req, res) => {
 const update = catchError(async(req, res) => {
     const { id } = req.params;
 
-    delete req.body.userId
-    delete req.body.productId
+    delete req.body.userId;
+    delete req.body.productId;
   
     const result = await Cart.update(
       req.body,
