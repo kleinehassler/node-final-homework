@@ -39,7 +39,7 @@ const create = catchError(async(req, res) => {
     if (!cart) return res.sendStatus(404)
     const copyCart = await Purchase.bulkCreate(cart)
     if (!copyCart) return copyCart.sendStatus(404)
-    console.log(copyCart);
+   // console.log(copyCart);
     // Eliminar Registros de Cart
     await Cart.destroy({ where: { userId } })
     return res.status(201).json(result);
