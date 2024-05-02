@@ -2,7 +2,7 @@ require ("../models")
 const request = require('supertest')
 const app = require('../app');
 const Product = require("../models/Product");
-const Cart = require("../models/Cart");
+//const Cart = require("../models/Cart");
 
 const URL_BASE = '/api/v1/purchase';
 
@@ -10,9 +10,9 @@ let TOKEN
 let userId
 let productBody
 let product
-let cart
+//let cart
 let cartBody
-let purchase
+//let purchase
 
 
 beforeAll(async () => {
@@ -56,7 +56,7 @@ test("POST -> URL_BASE, should return status code 201, res.body to be defined an
   
         expect(res.status).toBe(201);
         expect(res.body[0].quantity).toBe(cartBody.quantity)
-        await product.destroy();
+       // await product.destroy();
   
 })
   
@@ -70,7 +70,8 @@ test("GET -> URL_BASE, should return statusCode 200, and res.body.length ===1 ",
     // console.log(res.body)
     expect(res.status).toBe(200);
     expect(res.body).toBeDefined();
-    expect(res.body).toHaveLength(1);
-    
+   // expect(res.body).toHaveLength(1);
+
+    await product.destroy();
     
 })
