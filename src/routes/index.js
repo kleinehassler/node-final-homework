@@ -14,5 +14,5 @@ router.use('/categories', routerCategory)
 router.use('/products', routerProduct)
 router.use('/carts', verifyJwt, routerCart)
 router.use('/purchases', verifyJwt, routePurchase)
-router.use('/ProductsImages', routerProductImg)
+router.use('/Product_images', verifyJwt, routerProductImg)
 module.exports = router;

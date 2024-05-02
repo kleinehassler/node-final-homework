@@ -1,4 +1,4 @@
-const { getAll, create, getOne, remove, update } = require('../controllers/productimg.controllers');
+const { getAll, create,  remove } = require('../controllers/productimg.controllers');
 const express = require('express');
 const { verifyJwt } = require('../utils/verifyJWT');
 
@@ -9,7 +9,6 @@ routerProductImg.route('/')
     .post(verifyJwt, create);
 
 routerProductImg.route('/:id')
-    .get(verifyJwt, getOne)
     .delete(verifyJwt, remove)
 
 
