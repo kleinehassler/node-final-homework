@@ -3,6 +3,7 @@ require("../models")
 const request = require('supertest')
 const app = require('../app')
 const Category = require("../models/Category");
+const ProductImg = require("../models/ProductImg");
 
 const BASE_URL = '/api/v1/products'
 
@@ -10,6 +11,7 @@ let TOKEN
 let productId
 let category
 let product
+let image
 
 beforeAll(async () => {  
   const user = {
@@ -27,6 +29,11 @@ beforeAll(async () => {
     name: "Tecno" 
   })
   
+})
+
+afterAll( async () => {
+  await category.destroy()
+  await image.destroy() 
 })
 
 // Create
@@ -97,6 +104,25 @@ test("PUT -> 'BASE_URL/:id', should return status code 200, res.body.title === u
 
 })
 
+test("POST -> 'URL_BASE/:id/images', Return Status Code 200, and res.body.length === 1", async () => {
+  const imageBody = {
+    url: 'lorem40',
+    filename: 'lorem10'
+  }
+
+  image = await ProductImg.create(imageBody)
+
+  const res = await request(app)
+    .post(`${BASE_URL}/${productId}/images`)
+    .send([image.id])
+    .set('Authorization', `Bearer ${TOKEN}`)
+
+  expect(res.status).toBe(200)
+  expect(res.body).toBeDefined()
+  expect(res.body).toHaveLength(1)
+
+})
+
 // Delete
 test("DELETE 'BASE_URL/:id', Return Status Code 204", async () => {
   const res = await request(app)
@@ -105,5 +131,4 @@ test("DELETE 'BASE_URL/:id', Return Status Code 204", async () => {
 
   expect(res.status).toBe(204)
 
-  
 })
